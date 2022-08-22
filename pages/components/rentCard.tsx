@@ -15,10 +15,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { FaBed, FaBath, FaBorderAll } from "react-icons/fa";
-import React, { Component, Props, ReactDOM, useEffect, useState } from "react";
+import React, { Component, ReactDOM, useEffect, useState } from "react";
 import router from "next/router";
 import AlertMassage from "./alert";
-import { supabase } from "../../utils/supabaseClient";
 export default function RentCard({
   amount,
   location,
@@ -39,19 +38,7 @@ export default function RentCard({
   }, []);
 
   const bookInfo = async () => {
-    let { data, error } = await supabase
-      .from("booking_info")
-      .select("*")
-      .eq("book_id", post_id)
-      .single();
-    if (error) throw error;
-    if (data) {
-      console.log(data);
-      setId(data.book_id);
-      isBooked = true;
-    } else {
-      isBooked = false;
-    }
+    
   };
   return (
     <div>

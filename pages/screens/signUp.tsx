@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   Link,
   FormHelperText,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -21,7 +22,7 @@ import axios from "axios";
 import React, { Component } from "react";
 
 const api = axios.create({
-  baseURL: `https://localhost:3001/api/userprofile`,
+  baseURL: `http://localhost:5000/api/user`,
 });
 
 class SignUp extends Component {
@@ -41,6 +42,7 @@ class SignUp extends Component {
     console.log(res);
   };
   render() {
+    const toast = useToast();
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -108,10 +110,6 @@ class SignUp extends Component {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-                <FormHelperText>
-                  - Use at least one special character
-                </FormHelperText>
-                <FormHelperText>- Use at least one number</FormHelperText>
               </FormControl>
               <Stack spacing={10} pt={2}>
                 <Button
@@ -125,6 +123,12 @@ class SignUp extends Component {
                   onClick={(e) => {
                     e.preventDefault();
                     this.handleSignUp(email, password, name);
+                    toast({
+                      title: "SignUp Successfully",
+                      status: "success",
+                      duration: 1000,
+                      isClosable: true,
+                    })
                   }}
                 >
                   Sign up

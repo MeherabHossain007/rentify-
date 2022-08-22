@@ -25,9 +25,13 @@ import {
   useBoolean,
   useColorModeValue,
   useDisclosure,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription
 } from "@chakra-ui/react";
 import { FaBed, FaBath, FaBorderAll } from "react-icons/fa";
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import router from "next/router";
 import AlertMassage from "./alert";
 import axios from "axios";
@@ -87,11 +91,26 @@ export default function ProRentCard({
     type: string,
     status: string
   ) => {
-    
+    let res = await api
+      .patch(`/${post_id}`, {
+        name: name,
+        email: email,
+        phonenumber: phone,
+        price: price,
+        area: area,
+        bed: beds,
+        bath: baths,
+        description: description,
+        location: location,
+        address: address,
+        type: type,
+        approval_status: status,
+      })
+      .catch((err) => console.log(err));
+    console.log(res);
   };
   const bookInfo = async () => {
-    console.log(Uname)
-    
+    console.log(Uname);
   };
   return (
     <Center>
@@ -217,174 +236,179 @@ export default function ProRentCard({
               Update
             </Button>
             <Modal
-        closeOnOverlayClick={false}
-        isOpen={isOpen}
-        onClose={onClose}
-        size={"xl"}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Submit Request</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <FormControl isRequired as="button" borderColor={"white"}>
-              <FormLabel>Choose Photo</FormLabel>
-              <Input
-                type={"file"}
-                id={"flies"}
-                name={"flies"}
-                accept="image/png, image/jpeg"
-                multiple
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel htmlFor="name">Title</FormLabel>
-              <Input
-                id="name"
-                placeholder=""
-                onChange={(e) => setName(e.target.value)}
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel htmlFor="number">Contact Number</FormLabel>
-              <Input
-                id="number"
-                placeholder="017XXXXXXX"
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel htmlFor="email">Email (please enter default mail)</FormLabel>
-              <Input
-                id="email"
-                placeholder="m*****@gmail.com"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel htmlFor="address">Address</FormLabel>
-              <Input
-                id="address"
-                placeholder="14/C Street"
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </FormControl>
-            <HStack>
-              <FormControl isRequired>
-                <FormLabel htmlFor="location">Location</FormLabel>
-                <Select
-                  id="location"
-                  placeholder="Select location"
-                  onChange={(e) => setLocation(e.target.value)}
-                >
-                  <option>Badda</option>
-                  <option>Gulshan</option>
-                  <option>Banani</option>
-                  <option>Rampura</option>
-                  <option>Baridhara</option>
-                </Select>
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel htmlFor="type">Type</FormLabel>
-                <Select
-                  id="type"
-                  placeholder="Select type"
-                  onChange={(e) => setType(e.target.value)}
-                >
-                  <option>Hostel</option>
-                  <option>Apartment</option>
-                  <option>Roommate</option>
-                  <option>Sublet</option>
-                </Select>
-              </FormControl>
-            </HStack>
-
-            <HStack>
-              <FormControl isRequired>
-                <FormLabel htmlFor="beds">Beds</FormLabel>
-                <Input
-                  id="beds"
-                  placeholder="3"
-                  onChange={(e) => setBeds(e.target.value)}
-                />
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel htmlFor="baths">Baths</FormLabel>
-                <Input
-                  id="baths"
-                  placeholder="2"
-                  onChange={(e) => setBaths(e.target.value)}
-                />
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel htmlFor="completion">Completion</FormLabel>
-                <Select
-                  id="completion"
-                  placeholder="Select status"
-                  onChange={(e) => setCstatus(e.target.value)}
-                >
-                  <option>Ready</option>
-                  <option>Not Ready</option>
-                </Select>
-              </FormControl>
-            </HStack>
-            <HStack>
-              <FormControl isRequired>
-                <FormLabel htmlFor="area">Area(Sqft)</FormLabel>
-                <Input
-                  id="area"
-                  placeholder="1234"
-                  onChange={(e) => setArea(e.target.value)}
-                />
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel htmlFor="price">Price</FormLabel>
-                <Input
-                  id="price"
-                  placeholder="1000"
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </FormControl>
-            </HStack>
-            <Text mb="8px">Descrption</Text>
-            <Textarea
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Here is a sample placeholder"
-              size="sm"
-            />
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="green" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={(e) => {
-                e.preventDefault();
-                onClose();
-                PostUpdate(
-                    id,
-                    Uname,
-                    Uemail,
-                    Uphone,
-                    Ulocation,
-                    Uaddress,
-                    Uprice,
-                    Uarea,
-                    Ubeds,
-                    Ubaths,
-                    Udescription,
-                    Utype,
-                    Ucstatus
-                );
-
-              }}
+              closeOnOverlayClick={false}
+              isOpen={isOpen}
+              onClose={onClose}
+              size={"xl"}
             >
-              Submit
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+              <ModalOverlay backdropFilter="blur(10px)" />
+              <ModalContent>
+                <ModalHeader>Update Post</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Alert status="warning">
+                    <AlertIcon />
+                    You have to fill the full form in order to update. 
+                  </Alert>
+                  <FormControl isRequired as="button" borderColor={"white"}>
+                    <FormLabel>Choose Photo</FormLabel>
+                    <Input
+                      type={"file"}
+                      id={"flies"}
+                      name={"flies"}
+                      accept="image/png, image/jpeg"
+                      multiple
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="name">Title</FormLabel>
+                    <Input
+                      id="name"
+                      placeholder=""
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="number">Contact Number</FormLabel>
+                    <Input
+                      id="number"
+                      placeholder="017XXXXXXX"
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="email">
+                      Email (please enter default mail)
+                    </FormLabel>
+                    <Input
+                      id="email"
+                      placeholder="m*****@gmail.com"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="address">Address</FormLabel>
+                    <Input
+                      id="address"
+                      placeholder="14/C Street"
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </FormControl>
+                  <HStack>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="location">Location</FormLabel>
+                      <Select
+                        id="location"
+                        placeholder="Select location"
+                        onChange={(e) => setLocation(e.target.value)}
+                      >
+                        <option>Badda</option>
+                        <option>Gulshan</option>
+                        <option>Banani</option>
+                        <option>Rampura</option>
+                        <option>Baridhara</option>
+                      </Select>
+                    </FormControl>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="type">Type</FormLabel>
+                      <Select
+                        id="type"
+                        placeholder="Select type"
+                        onChange={(e) => setType(e.target.value)}
+                      >
+                        <option>Hostel</option>
+                        <option>Apartment</option>
+                        <option>Roommate</option>
+                        <option>Sublet</option>
+                      </Select>
+                    </FormControl>
+                  </HStack>
+
+                  <HStack>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="beds">Beds</FormLabel>
+                      <Input
+                        id="beds"
+                        placeholder="3"
+                        onChange={(e) => setBeds(e.target.value)}
+                      />
+                    </FormControl>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="baths">Baths</FormLabel>
+                      <Input
+                        id="baths"
+                        placeholder="2"
+                        onChange={(e) => setBaths(e.target.value)}
+                      />
+                    </FormControl>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="completion">Completion</FormLabel>
+                      <Select
+                        id="completion"
+                        placeholder="Select status"
+                        onChange={(e) => setCstatus(e.target.value)}
+                      >
+                        <option>Ready</option>
+                        <option>Not Ready</option>
+                      </Select>
+                    </FormControl>
+                  </HStack>
+                  <HStack>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="area">Area(Sqft)</FormLabel>
+                      <Input
+                        id="area"
+                        placeholder="1234"
+                        onChange={(e) => setArea(e.target.value)}
+                      />
+                    </FormControl>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="price">Price</FormLabel>
+                      <Input
+                        id="price"
+                        placeholder="1000"
+                        onChange={(e) => setPrice(e.target.value)}
+                      />
+                    </FormControl>
+                  </HStack>
+                  <Text mb="8px">Descrption</Text>
+                  <Textarea
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Here is a sample placeholder"
+                    size="sm"
+                  />
+                </ModalBody>
+                <ModalFooter>
+                  <Button colorScheme="green" mr={3} onClick={onClose}>
+                    Close
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onClose();
+                      PostUpdate(
+                        id,
+                        Uname,
+                        Uemail,
+                        Uphone,
+                        Ulocation,
+                        Uaddress,
+                        Uprice,
+                        Uarea,
+                        Ubeds,
+                        Ubaths,
+                        Udescription,
+                        Utype,
+                        Ucstatus
+                      );
+                    }}
+                  >
+                    Submit
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
             <Button
               w={"100%"}
               fontSize={"sm"}

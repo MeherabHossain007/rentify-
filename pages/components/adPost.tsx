@@ -20,6 +20,11 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: `http://localhost:5001/api/post`,
+});
 
 function AdPost() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,7 +56,25 @@ function AdPost() {
     type: string,
     status: string,
     image: string
-  ) => {};
+  ) => {
+    let res = await api
+      .post("/", {
+        name: name,
+        email: email,
+        phonenumber: phone,
+        price: price,
+        area: area,
+        bed: beds,
+        bath: baths,
+        description: description,
+        location: location,
+        address: address,
+        type: type,
+        approval_status: status,
+      })
+      .catch((err) => console.log(err));
+    console.log(res);
+  };
 
   async function uploadAvatar(event) {}
 
@@ -60,7 +83,7 @@ function AdPost() {
       <Button
         variant={"solid"}
         colorScheme={"teal"}
-        size={"sm"}
+        size={"md"}
         mr={4}
         leftIcon={<AddIcon />}
         onClick={onOpen}
@@ -73,7 +96,7 @@ function AdPost() {
         onClose={onClose}
         size={"xl"}
       >
-        <ModalOverlay />
+        <ModalOverlay backdropFilter="blur(10px)" />
         <ModalContent>
           <ModalHeader>Submit Request</ModalHeader>
           <ModalCloseButton />
