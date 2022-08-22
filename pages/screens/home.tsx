@@ -33,7 +33,7 @@ export default function HomePage() {
               bgGradient={"linear(to-r, #22c1c3, #fdbb2d)"}
               bgClip="text"
             >
-              Search Your desire Rent
+              Search Your Desire Rent
             </Heading>
             <Text color={"gray.600"} fontSize={"xl"}>
               Easy access and fast way of finding rent through Internet and
