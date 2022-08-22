@@ -44,7 +44,7 @@ export default function Hero() {
           </Heading>
           <Text fontSize={{ base: "md", lg: "lg" }} color={"gray.500"}>
             The project board is an exclusive resource for home rent service.
-            It's perfect for all types of people.
+            It's perfect for all types of people and makes your home rent easy.
           </Text>
           <Stack direction={"row"} spacing={4}>
             <Button

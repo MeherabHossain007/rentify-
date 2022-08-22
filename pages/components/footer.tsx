@@ -51,7 +51,7 @@ import {
           borderStyle={'solid'}
           py={4}
           borderColor={useColorModeValue('gray.200', 'gray.700')}>
-          <Text textAlign={'center'}>© 2021 BPay Limited. All rights reserved</Text>
+          <Text textAlign={'center'}>© 2021 Rentify Limited. All rights reserved</Text>
           
         </Box>
       </Box>

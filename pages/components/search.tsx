@@ -93,7 +93,7 @@ export default function Search() {
           boxShadow={"2xl"}
           w={"100%"}
           h={"100%"}
-          borderRadius={10}
+          borderRadius={9}
           display={"flex"}
           flexDirection="column"
           justifyContent={"flex-start"}
