@@ -19,7 +19,7 @@ import ProfileNav from "../components/profileNav";
 import { useEffect } from "react";
 import ProRentCard from "../components/proCard";
 import axios from "axios";
-
+import { SearchCard } from "../components/search";
 
 const api = axios.create({
   baseURL: `http://localhost:5001/api/post`,
@@ -68,7 +68,9 @@ function Profile() {
               <AdPost />
             </HStack>
             <Button
-              onClick={() => {}}
+              onClick={() => {
+                window.location.reload();
+              }}
               bgColor="green.200"
               textColor="green"
               boxShadow="0 0px 17px #9ae6b4"
@@ -100,7 +102,7 @@ function Profile() {
                     image={
                       "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/colonial-style-house-night-scene.jpg?alt=media&token=6bfee092-54bc-4c68-904b-5d7af87a78c0"
                     }
-                    post_id={posts.id}
+                    id={posts.id}
                   >
                     <Button
                       w={100}
