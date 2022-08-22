@@ -30,6 +30,11 @@ import { FaBed, FaBath, FaBorderAll } from "react-icons/fa";
 import React, {useEffect, useState } from "react";
 import router from "next/router";
 import AlertMassage from "./alert";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: `http://localhost:5001/api/post`,
+});
 export default function ProRentCard({
   amount,
   location,
@@ -39,7 +44,7 @@ export default function ProRentCard({
   bath,
   area,
   image,
-  post_id,
+  id,
   phone,
   children,
   email,
@@ -65,7 +70,7 @@ export default function ProRentCard({
   }, []);
 
   const PostDelete = async (post_id: any) => {
-
+    let data = await api.delete(`/${post_id}`);
   };
   const PostUpdate = async (
     post_id: any,
@@ -105,7 +110,7 @@ export default function ProRentCard({
           onClick={() => {
             router.push({
               pathname: "/components/ProCardDetails",
-              query: post_id,
+              query: id,
             });
           }}
         >
@@ -181,7 +186,7 @@ export default function ProRentCard({
                 </HStack>
               </Flex>
             </Stack>
-            {bookId === post_id ? (
+            {bookId === id ? (
               <Badge colorScheme="green" h={5}>
                 Booked
               </Badge>
@@ -358,7 +363,7 @@ export default function ProRentCard({
                 e.preventDefault();
                 onClose();
                 PostUpdate(
-                    post_id,
+                    id,
                     Uname,
                     Uemail,
                     Uphone,
@@ -396,7 +401,7 @@ export default function ProRentCard({
                 textColor: "white",
               }}
               onClick={() => {
-                PostDelete(post_id);
+                PostDelete(id);
                 window.location.reload();
               }}
             >
