@@ -3,60 +3,60 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
   id: {
     type: String,
-    required: true,
+    reuire: true,
   },
   name: {
     type: String,
-    required: true,
+    reuire: true,
   },
 
   phonenumber: {
     type: String,
-    required: true,
+    reuire: true,
   },
   email: {
     type: String,
-    required: true,
+    reuire: true,
   },
   address: {
     type: String,
-    required: true,
+    reuire: true,
   },
   location: {
     type: String,
-    required: true,
+    reuire: true,
   },
   bed: {
     type: String,
-    required: true,
+    reuire: true,
   },
   bath: {
     type: String,
-    required: true,
+    reuire: true,
   },
   area: {
     type: String,
-    required: true,
+    reuire: true,
   },
   status: {
     type: String,
-    required: true,
+    reuire: true,
   },
   price: {
     type: String,
-    required: true,
+    reuire: true,
   },
   type: {
     type: String,
-    required: true,
+    reuire: true,
   },
   description: {
     type: String,
-    required: true,
+    reuire: true,
   },
   approval_status: {
     type: String,
-    required: true,
+    reuire: true,
   },
   createdOn: {
     type: Date,
