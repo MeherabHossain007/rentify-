@@ -11,9 +11,8 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,
+  Image,
   Link,
-  FormHelperText,
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -33,12 +32,13 @@ class SignUp extends Component {
   };
 
   handleSignUp = async (_Email: string, _Password: string, _Name: string) => {
-    let res = await api.post("/", {
-      name: _Name,
-      password: _Password,
-      email: _Email,
-    })
-    .catch(err => console.log(err))
+    let res = await api
+      .post("/", {
+        name: _Name,
+        password: _Password,
+        email: _Email,
+      })
+      .catch((err) => console.log(err));
     console.log(res);
   };
   render() {
@@ -48,13 +48,17 @@ class SignUp extends Component {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     return (
-      <Flex
-        minH={"50-*+vh"}
-        minW={"50vh"}
-        align={"center"}
-        justify={"center"}
-        bg={useColorModeValue("gray.50", "gray.800")}
-      >
+      <Flex minH={"50-*+vh"} minW={"80vh"} align={"center"} justify={"center"}>
+        <HStack>
+          <Image
+            alt={"Login Image"}
+            boxSize={"550px"}
+            objectFit={"contain"}
+            src={
+              "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2F20943394.jpg?alt=media&token=348a271d-cf64-42fd-9952-d52a7cc05236"
+            }
+          />
+        </HStack>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <Stack align={"center"}>
             <Heading fontSize={"4xl"} textAlign={"center"}>
@@ -64,25 +68,16 @@ class SignUp extends Component {
               to enjoy all of our cool features ✌️
             </Text>
           </Stack>
-          <Box
-            rounded={"lg"}
-            bg={useColorModeValue("white", "gray.700")}
-            boxShadow={"lg"}
-            p={8}
-          >
+          <Box rounded={"lg"} boxShadow={"lg"} p={8} minW={"sm"}>
             <Stack spacing={4}>
-              <HStack>
-                <Box>
-                  <FormControl id="name" isRequired>
-                    <FormLabel>Name</FormLabel>
-                    <Input
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </FormControl>
-                </Box>
-              </HStack>
+              <FormControl id="name" isRequired>
+                <FormLabel>Name</FormLabel>
+                <Input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </FormControl>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
                 <Input
@@ -115,10 +110,10 @@ class SignUp extends Component {
                 <Button
                   loadingText="Submitting"
                   size="lg"
-                  bg={"green.400"}
+                  bg={"blue.400"}
                   color={"white"}
                   _hover={{
-                    bg: "green.500",
+                    bg: "blue.500",
                   }}
                   onClick={(e) => {
                     e.preventDefault();
@@ -128,7 +123,7 @@ class SignUp extends Component {
                       status: "success",
                       duration: 1000,
                       isClosable: true,
-                    })
+                    });
                   }}
                 >
                   Sign up

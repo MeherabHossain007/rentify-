@@ -82,7 +82,7 @@ function AdPost() {
     <>
       <Button
         variant={"solid"}
-        colorScheme={"teal"}
+        colorScheme={"blue"}
         size={"md"}
         mr={4}
         leftIcon={<AddIcon />}

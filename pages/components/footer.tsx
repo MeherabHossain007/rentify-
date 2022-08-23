@@ -21,7 +21,7 @@ import {
       objectFit={'contain'}
       height={32}
       className="img-responsive"
-      src={'https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/Asset%208.png?alt=media&token=0b442e59-df26-485a-acf2-87930906e0d0'}
+      src={'https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2FAsset%202.png?alt=media&token=05e10e38-c299-4b1b-b7b4-a4b591dbad26'}
       />
     );
   };

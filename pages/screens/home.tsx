@@ -30,7 +30,7 @@ export default function HomePage() {
           <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
             <Heading
               fontSize={"4xl"}
-              bgGradient={"linear(to-r, #22c1c3, #fdbb2d)"}
+              bgGradient={"linear(to-r, #090979,#00d4ff)"}
               bgClip="text"
             >
               Search Your Desire Rent
@@ -48,7 +48,7 @@ export default function HomePage() {
         textAlign="center"
         pt={10}
         pb={5}
-        bgGradient={"linear(to-r, #22c1c3, #fdbb2d)"}
+        bgGradient={"linear(to-r, #090979,#00d4ff)"}
         bgClip="text"
       >
         Category

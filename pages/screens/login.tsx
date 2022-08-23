@@ -9,9 +9,10 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,
+  Image,
   FormErrorMessage,
   useToast,
+  HStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -49,22 +50,30 @@ export default function Login() {
   return (
     <Flex
       minH={"50vh"}
-      minW={"50vh"}
+      minW={"80vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
+      <HStack>
+      <Image
+          alt={"Login Image"}
+          boxSize={"550px"}
+          objectFit={"contain"}
+          src={
+            "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2F20944201.jpg?alt=media&token=1b137e54-fbda-4f39-964d-e8356e16ffc2"
+          }
+        />
+      </HStack>
+      <Stack spacing={8} mx={"auto"} maxW={"90vh"} py={12} px={6}>
+        <Stack align={"start"}>
           <Heading fontSize={"4xl"}>Sign in to your account</Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool <Link color={"green.400"}>features</Link>{" "}
+            to enjoy all of our cool <Link color={"blue.400"}>features</Link>{" "}
             ✌️
           </Text>
         </Stack>
         <Box
           rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
           p={8}
         >
@@ -100,16 +109,15 @@ export default function Login() {
                 align={"start"}
                 justify={"space-between"}
               >
-                <Link color={"green.400"}>Forgot password?</Link>
+                <Link color={"blue.400"}>Forgot password?</Link>
               </Stack>
               <Button
-                bg={"green.400"}
+                bg={"blue.400"}
                 color={"white"}
                 _hover={{
-                  bg: "green.500",
+                  bg: "blue.500",
                 }}
                 onClick={(e) => {
-                  e.preventDefault();
                   handleLogin(email, password);
                   console.log(islogin)
                   if (islogin == "false") {

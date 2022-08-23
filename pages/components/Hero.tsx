@@ -31,14 +31,14 @@ export default function Hero() {
                 position: "absolute",
                 bottom: 1,
                 left: 0,
-                bg: "green.400",
+                bg: "blue.400",
                 zIndex: -1,
               }}
             >
               Rentify
             </Text>
             <br />{" "}
-            <Text color={"green.400"} as={"span"}>
+            <Text color={"blue.400"} as={"span"}>
               Rent Service for all catogory.
             </Text>{" "}
           </Heading>
@@ -51,10 +51,10 @@ export default function Hero() {
               as={"a"}
               href={"/signUp"}
               rounded={"full"}
-              bg={"green.400"}
+              bg={"blue.400"}
               color={"white"}
               _hover={{
-                bg: "green.500",
+                bg: "blue.500",
               }}
             >
               Get Started
@@ -65,10 +65,10 @@ export default function Hero() {
       <Flex>
         <Image
           alt={"Login Image"}
-          boxSize={"600px"}
+          boxSize={"550px"}
           objectFit={"contain"}
           src={
-            "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/House%20searching-bro.png?alt=media&token=32527ca7-4958-420a-9d20-d29599db0326"
+            "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2F20945141.jpg?alt=media&token=578f790a-baad-4748-8585-be304e726552"
           }
         />
       </Flex>

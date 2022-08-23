@@ -65,7 +65,7 @@ export default function Navbar() {
             h={10}
             w={100}
             src={
-              "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/Asset%208.png?alt=media&token=0b442e59-df26-485a-acf2-87930906e0d0"
+              "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2FAsset%202.png?alt=media&token=05e10e38-c299-4b1b-b7b4-a4b591dbad26"
             }
           />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -90,7 +90,7 @@ export default function Navbar() {
           <Modal
             isOpen={islogOpen}
             onClose={onlogClose}
-            size={"xl"}
+            size={"5xl"}
             id={"Login"}
           >
             <ModalOverlay backdropFilter="blur(10px)" />
@@ -106,9 +106,9 @@ export default function Navbar() {
             fontWeight={400}
             color="white"
             variant={"solid"}
-            bg="green.400"
+            bg="blue.400"
             _hover={{
-              bg: "green.300",
+              bg: "blue.300",
             }}
             onClick={onSignOpen}
           >
@@ -117,7 +117,7 @@ export default function Navbar() {
           <Modal
             isOpen={isSignOpen}
             onClose={onSignClose}
-            size={"xl"}
+            size={"5xl"}
             id={"SignUp"}
           >
             <ModalOverlay backdropFilter='blur(10px)' />

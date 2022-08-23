@@ -43,11 +43,9 @@ export default function ProfileNav({ id }) {
 
   useEffect(() => {
     getProfile();
-  },[]);
+  }, []);
 
-  const getProfile = async () => {
-
-  };
+  const getProfile = async () => {};
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -64,7 +62,7 @@ export default function ProfileNav({ id }) {
             h={10}
             w={100}
             src={
-              "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/Asset%208.png?alt=media&token=0b442e59-df26-485a-acf2-87930906e0d0"
+              "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2FAsset%202.png?alt=media&token=05e10e38-c299-4b1b-b7b4-a4b591dbad26"
             }
           />
 
@@ -103,10 +101,17 @@ export default function ProfileNav({ id }) {
                   <MenuDivider />
                   <MenuItem>Account Settings</MenuItem>
                   <MenuItem
-                  onClick={()=>{
-                    router.push('/')
-                  }}
-                  >Logout</MenuItem>
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/");
+                      window.history.pushState(null, document.title, window.location.href);
+                      window.addEventListener('popstate', function (event){
+                          window.history.pushState(null, document.title,  window.location.href);
+                      });  
+                    }}
+                  >
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

@@ -2,25 +2,13 @@ import { SearchIcon } from "@chakra-ui/icons";
 import {
   Stack,
   Flex,
-  Button,
   Text,
   VStack,
   useBreakpointValue,
   Box,
-  HStack,
   FormControl,
-  FormLabel,
   Input,
   IconButton,
-  Select,
-  Spacer,
-  Heading,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  Container,
   keyframes,
   SimpleGrid,
 } from "@chakra-ui/react";
@@ -113,7 +101,7 @@ export default function Search() {
                     animation={`2.25s ${pulseRing} cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite`}
                     w={20}
                     cursor={"pointer"}
-                    colorScheme="green"
+                    colorScheme="blue"
                     aria-label="Search database"
                     icon={<SearchIcon />}
                     onClick={() => {
@@ -127,7 +115,7 @@ export default function Search() {
                     gridRow={1}
                     w={20}
                     cursor={"pointer"}
-                    colorScheme="green"
+                    colorScheme="blue"
                     aria-label="Search database"
                     icon={<SearchIcon />}
                     onClick={() => {
