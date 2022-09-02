@@ -36,7 +36,7 @@ const createUser = async (req, res) => {
       price: req.body.price,
       type: req.body.type,
       description: req.body.description,
-      approval_status:req.body.approval_status
+      approval_status: req.body.approval_status,
     });
     await newUser.save();
     res.status(201).json(newUser);
@@ -48,19 +48,42 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const user = await User.findOne({ id: req.params.id });
-    user.name = req.body.name;
-    user.phonenumber= req.body.phonenumber,
-    user.email = req.body.email;
-    user.address= req.body.address;
-    user.location= req.body.location;
-    user.bed= req.body.bed;
-    user.bath= req.body.bath;
-    user.area= req.body.area;
-    user.status= req.body.status;
-    user.price= req.body.price;
-    user.type= req.body.type;
-    user.description= req.body.description;
-    user.approval_status=req.body.approval_status;
+    if (req.body.name) {
+      user.name = req.body.name;
+    }
+    if (req.body.phonenumber) {
+      user.phonenumber = req.body.phonenumber;
+    }
+    if (req.body.address) {
+      user.address = req.body.address;
+    }
+    if (req.body.location) {
+      user.location = req.body.location;
+    }
+    if (req.body.bed) {
+      user.bed = req.body.bed;
+    }
+    if (req.body.bath) {
+      user.bath = req.body.bath;
+    }
+    if (req.body.area) {
+      user.area = req.body.area;
+    }
+    if (req.body.status) {
+      user.status = req.body.status;
+    }
+    if (req.body.price) {
+      user.price = req.body.price;
+    }
+    if (req.body.type) {
+      user.type = req.body.type;
+    }
+    if (req.body.description) {
+      user.description = req.body.description;
+    }
+    if (req.body.approval_status) {
+      user.approval_status = req.body.approval_status;
+    }
     await user.save();
     res.status(200).json(user);
   } catch (error) {

@@ -3,38 +3,24 @@ import {
   Button,
   Center,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   HStack,
-  Icon,
   Image,
-  Input,
-  Link,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Select,
   Stack,
   Text,
-  Textarea,
-  useBoolean,
   useColorModeValue,
   useDisclosure,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription
+  Box,
+  Tag,
+  TagLabel,
+  TagRightIcon,
 } from "@chakra-ui/react";
 import { FaBed, FaBath, FaBorderAll } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
 import router from "next/router";
-import AlertMassage from "./alert";
 import axios from "axios";
+import { IoLocationSharp } from "react-icons/io5";
+import PosUpdate from "./posUpdate";
 
 const api = axios.create({
   baseURL: `http://localhost:5001/api/post`,
@@ -76,39 +62,7 @@ export default function ProRentCard({
   const PostDelete = async (post_id: any) => {
     let data = await api.delete(`/${post_id}`);
   };
-  const PostUpdate = async (
-    post_id: any,
-    name: string,
-    email: string,
-    phone: string,
-    location: string,
-    address: string,
-    price: any,
-    area: any,
-    beds: string,
-    baths: string,
-    description: string,
-    type: string,
-    status: string
-  ) => {
-    let res = await api
-      .patch(`/${post_id}`, {
-        name: name,
-        email: email,
-        phonenumber: phone,
-        price: price,
-        area: area,
-        bed: beds,
-        bath: baths,
-        description: description,
-        location: location,
-        address: address,
-        type: type,
-        approval_status: status,
-      })
-      .catch((err) => console.log(err));
-    console.log(res);
-  };
+  
   const bookInfo = async () => {
     console.log(Uname);
   };
@@ -123,292 +77,102 @@ export default function ProRentCard({
         boxShadow={"lg"}
         padding={4}
       >
-        <Center
-          py={6}
-          as={"button"}
-          onClick={() => {
-            router.push({
-              pathname: "/components/ProCardDetails",
-              query: id,
-            });
-          }}
-        >
-          <Stack
+        <Center py={6}>
+          <Box
             borderWidth="1px"
             borderRadius="lg"
             w={"100%"}
-            height={"45vh"}
-            direction={{ base: "column", md: "row" }}
+            height={"100%"}
             bg={useColorModeValue("white", "gray.900")}
             boxShadow={"lg"}
             padding={4}
+            as={"button"}
+            onClick={() => {
+              router.push({
+                pathname: "/components/ProCardDetails",
+                query: id,
+              });
+            }}
           >
-            <Flex flex={1} bg="blue.200" borderRadius={"lg"}>
+            <Stack direction={{ base: "column", md: "row" }}>
               <Image
                 objectFit="cover"
-                boxSize="100%"
+                maxH={"30%"}
+                maxW={"50%"}
                 borderRadius={"lg"}
                 src={image}
               />
-            </Flex>
-            <Stack
-              flex={1}
-              flexDirection="column"
-              justifyContent="start"
-              alignItems="start"
-              p={1}
-              pl={10}
-            >
-              <Stack direction="row" alignItems="baseline">
-                <Text
-                  fontSize="18"
-                  fontWeight="bold"
-                  textAlign={"match-parent"}
-                >
-                  BDT
-                </Text>
-                <Text fontSize="40" fontWeight="bold">
-                  {amount}
-                </Text>
-              </Stack>
-              <Text>{location}</Text>
-              <Badge>{type}</Badge>
-              <Heading
-                fontSize={20}
-                overflow={"hidden"}
-                orientation={"horizontal"}
-                noOfLines={1}
-              >
-                {title}
-              </Heading>
-              <HStack spacing={7} pt={3} alignItems={"baseline"}>
-                <HStack>
-                  <FaBed size={20} />
-                  <Text>{bed}</Text>
-                </HStack>
-                <HStack>
-                  <FaBath size={20} />
-                  <Text>{bath}</Text>
-                </HStack>
-                <HStack>
-                  <FaBorderAll size={20} />
-                  <Text>{area}</Text>
-                </HStack>
-              </HStack>
-              <Flex
-                justifyContent={"flex-end"}
-                flexDirection={"column"}
+              <Stack
                 flex={1}
+                flexDirection="column"
+                justifyContent="start"
+                alignItems="start"
+                p={1}
+                pl={10}
               >
-                <HStack py={4} justifyContent={"start"}>
-                  {children}
+                <Stack direction="row" alignItems="baseline">
+                  <Text
+                    fontSize="md"
+                    fontWeight="bold"
+                    textAlign={"match-parent"}
+                  >
+                    BDT
+                  </Text>
+                  <Text fontSize="4xl" fontWeight="bold">
+                    {amount}
+                  </Text>
+                </Stack>
+                <Tag size={"lg"} variant="outline" colorScheme="blue">
+                  <TagLabel>{location}</TagLabel>
+                  <TagRightIcon boxSize="12px" as={IoLocationSharp} />
+                </Tag>
+                <Badge fontSize="sm" colorScheme="blue" variant={"solid"}>
+                  {type}
+                </Badge>
+                <Heading
+                  fontSize={20}
+                  overflow={"hidden"}
+                  orientation={"horizontal"}
+                  noOfLines={1}
+                  textAlign={"start"}
+                >
+                  {title}
+                </Heading>
+                <HStack spacing={7} pt={2} alignItems={"baseline"}>
+                  <HStack>
+                    <FaBed size={20} />
+                    <Text>{bed}</Text>
+                  </HStack>
+                  <HStack>
+                    <FaBath size={20} />
+                    <Text>{bath}</Text>
+                  </HStack>
+                  <HStack>
+                    <FaBorderAll size={20} />
+                    <Text>{area}</Text>
+                  </HStack>
                 </HStack>
-              </Flex>
+                <Flex
+                  justifyContent={"flex-end"}
+                  flexDirection={"column"}
+                  flex={1}
+                >
+                  <HStack justifyContent={"start"}>{children}</HStack>
+                </Flex>
+              </Stack>
+              {bookId === id ? (
+                <Badge colorScheme="green" h={5}>
+                  Booked
+                </Badge>
+              ) : (
+                ""
+              )}
             </Stack>
-            {bookId === id ? (
-              <Badge colorScheme="green" h={5}>
-                Booked
-              </Badge>
-            ) : (
-              ""
-            )}
-          </Stack>
+          </Box>
         </Center>
         <Center>
           <Stack direction={"row"} flex={1}>
-            <Button
-              w={"100%"}
-              fontSize={"sm"}
-              fontWeight={400}
-              color="white"
-              variant={"solid"}
-              bg="gray.200"
-              textColor={"black"}
-              style={{
-                fontWeight: "bold",
-              }}
-              _hover={{
-                bg: "green.400",
-                textColor: "white",
-              }}
-              onClick={onOpen}
-            >
-              Update
-            </Button>
-            <Modal
-              closeOnOverlayClick={false}
-              isOpen={isOpen}
-              onClose={onClose}
-              size={"xl"}
-            >
-              <ModalOverlay backdropFilter="blur(10px)" />
-              <ModalContent>
-                <ModalHeader>Update Post</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <Alert status="warning">
-                    <AlertIcon />
-                    You have to fill the full form in order to update. 
-                  </Alert>
-                  <FormControl isRequired as="button" borderColor={"white"}>
-                    <FormLabel>Choose Photo</FormLabel>
-                    <Input
-                      type={"file"}
-                      id={"flies"}
-                      name={"flies"}
-                      accept="image/png, image/jpeg"
-                      multiple
-                    />
-                  </FormControl>
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="name">Title</FormLabel>
-                    <Input
-                      id="name"
-                      placeholder=""
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </FormControl>
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="number">Contact Number</FormLabel>
-                    <Input
-                      id="number"
-                      placeholder="017XXXXXXX"
-                      onChange={(e) => setPhone(e.target.value)}
-                    />
-                  </FormControl>
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="email">
-                      Email (please enter default mail)
-                    </FormLabel>
-                    <Input
-                      id="email"
-                      placeholder="m*****@gmail.com"
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </FormControl>
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="address">Address</FormLabel>
-                    <Input
-                      id="address"
-                      placeholder="14/C Street"
-                      onChange={(e) => setAddress(e.target.value)}
-                    />
-                  </FormControl>
-                  <HStack>
-                    <FormControl isRequired>
-                      <FormLabel htmlFor="location">Location</FormLabel>
-                      <Select
-                        id="location"
-                        placeholder="Select location"
-                        onChange={(e) => setLocation(e.target.value)}
-                      >
-                        <option>Badda</option>
-                        <option>Gulshan</option>
-                        <option>Banani</option>
-                        <option>Rampura</option>
-                        <option>Baridhara</option>
-                      </Select>
-                    </FormControl>
-                    <FormControl isRequired>
-                      <FormLabel htmlFor="type">Type</FormLabel>
-                      <Select
-                        id="type"
-                        placeholder="Select type"
-                        onChange={(e) => setType(e.target.value)}
-                      >
-                        <option>Hostel</option>
-                        <option>Apartment</option>
-                        <option>Roommate</option>
-                        <option>Sublet</option>
-                      </Select>
-                    </FormControl>
-                  </HStack>
-
-                  <HStack>
-                    <FormControl isRequired>
-                      <FormLabel htmlFor="beds">Beds</FormLabel>
-                      <Input
-                        id="beds"
-                        placeholder="3"
-                        onChange={(e) => setBeds(e.target.value)}
-                      />
-                    </FormControl>
-                    <FormControl isRequired>
-                      <FormLabel htmlFor="baths">Baths</FormLabel>
-                      <Input
-                        id="baths"
-                        placeholder="2"
-                        onChange={(e) => setBaths(e.target.value)}
-                      />
-                    </FormControl>
-                    <FormControl isRequired>
-                      <FormLabel htmlFor="completion">Completion</FormLabel>
-                      <Select
-                        id="completion"
-                        placeholder="Select status"
-                        onChange={(e) => setCstatus(e.target.value)}
-                      >
-                        <option>Ready</option>
-                        <option>Not Ready</option>
-                      </Select>
-                    </FormControl>
-                  </HStack>
-                  <HStack>
-                    <FormControl isRequired>
-                      <FormLabel htmlFor="area">Area(Sqft)</FormLabel>
-                      <Input
-                        id="area"
-                        placeholder="1234"
-                        onChange={(e) => setArea(e.target.value)}
-                      />
-                    </FormControl>
-                    <FormControl isRequired>
-                      <FormLabel htmlFor="price">Price</FormLabel>
-                      <Input
-                        id="price"
-                        placeholder="1000"
-                        onChange={(e) => setPrice(e.target.value)}
-                      />
-                    </FormControl>
-                  </HStack>
-                  <Text mb="8px">Descrption</Text>
-                  <Textarea
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Here is a sample placeholder"
-                    size="sm"
-                  />
-                </ModalBody>
-                <ModalFooter>
-                  <Button colorScheme="green" mr={3} onClick={onClose}>
-                    Close
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onClose();
-                      PostUpdate(
-                        id,
-                        Uname,
-                        Uemail,
-                        Uphone,
-                        Ulocation,
-                        Uaddress,
-                        Uprice,
-                        Uarea,
-                        Ubeds,
-                        Ubaths,
-                        Udescription,
-                        Utype,
-                        Ucstatus
-                      );
-                    }}
-                  >
-                    Submit
-                  </Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
+            <PosUpdate email={email} id={id}/>
             <Button
               w={"100%"}
               fontSize={"sm"}

@@ -7,6 +7,7 @@ import {
   Text,
   Box,
   Flex,
+  useColorModeValue,
   Image,
   VStack,
   Stack,
@@ -43,15 +44,16 @@ function Profile() {
 
   return (
     <>
-      <ProfileNav id={email} />
+      <ProfileNav id={email}/>
       <Container
-        bgImage="url('https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/136.jpg?alt=media&token=3e11bf34-43bc-4ebb-a5bc-68f439e901f3')"
-        bgSize={"700px"}
+        bgImage="url('https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2F810-2%20%5BConverted%5D.png?alt=media&token=fecd0b33-c04d-4304-b9c7-f1643408f57c')"
+        bgSize={"465px"}
         maxW={"full"}
+        maxH={"45vh"}
       >
-        <Flex alignItems={"center"} flexGrow={1}>
+        <Flex alignItems={"center"}>
           <Box
-            bgColor={"white"}
+            bgColor={useColorModeValue("white", "#1a202c")}
             borderRadius={10}
             boxShadow={"lg"}
             justifyContent={"center"}
@@ -64,8 +66,8 @@ function Profile() {
             m={12}
           >
             <HStack p={10} justifyContent={"space-between"} flex={1}>
-              <Heading textAlign="center">My Post</Heading>
-              <AdPost />
+              <Heading textAlign="center" textColor={useColorModeValue("black", "white")}>My Post</Heading>
+              <AdPost email ={email} />
             </HStack>
             <Button
               onClick={() => {
@@ -94,8 +96,8 @@ function Profile() {
                     location={posts.location}
                     type={posts.type}
                     title={posts.name}
-                    bed={posts.beds}
-                    bath={posts.baths}
+                    bed={posts.bed}
+                    bath={posts.bath}
                     area={posts.area}
                     phone={posts.phonenumber}
                     email={posts.email}
@@ -110,10 +112,7 @@ function Profile() {
                       fontWeight={400}
                       color="white"
                       variant={"solid"}
-                      bg="green.400"
-                      _hover={{
-                        bg: "green.400",
-                      }}
+                      colorScheme={"blue"}
                     >
                       Book Now
                     </Button>

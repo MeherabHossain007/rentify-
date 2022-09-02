@@ -56,16 +56,27 @@ export default function ProfileNav({ id }) {
         boxShadow={"xl"}
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Image
-            alt={"Logo"}
-            objectFit={"contain"}
-            h={10}
-            w={100}
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2FAsset%202.png?alt=media&token=05e10e38-c299-4b1b-b7b4-a4b591dbad26"
-            }
-          />
-
+          {colorMode === "light" ? (
+            <Image
+              alt={"Logo"}
+              objectFit={"contain"}
+              h={10}
+              w={100}
+              src={
+                "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2FAsset%202.png?alt=media&token=05e10e38-c299-4b1b-b7b4-a4b591dbad26"
+              }
+            />
+          ) : (
+            <Image
+              alt={"Logo"}
+              objectFit={"contain"}
+              h={10}
+              w={100}
+              src={
+                "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2FAsset%203.png?alt=media&token=1e5548f5-a3ba-4077-aa51-eb8287055c65"
+              }
+            />
+          )}
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
               <Button onClick={toggleColorMode}>
@@ -104,10 +115,18 @@ export default function ProfileNav({ id }) {
                     onClick={(e) => {
                       e.preventDefault();
                       router.push("/");
-                      window.history.pushState(null, document.title, window.location.href);
-                      window.addEventListener('popstate', function (event){
-                          window.history.pushState(null, document.title,  window.location.href);
-                      });  
+                      window.history.pushState(
+                        null,
+                        document.title,
+                        window.location.href
+                      );
+                      window.addEventListener("popstate", function (event) {
+                        window.history.pushState(
+                          null,
+                          document.title,
+                          window.location.href
+                        );
+                      });
                     }}
                   >
                     Logout

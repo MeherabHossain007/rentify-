@@ -26,10 +26,9 @@ const api = axios.create({
   baseURL: `http://localhost:5001/api/post`,
 });
 
-function AdPost() {
+function AdPost({email}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
@@ -103,7 +102,7 @@ function AdPost() {
           <ModalBody>
             <FormControl isRequired as="button" borderColor={"white"}>
               <FormLabel>Choose Photo</FormLabel>
-              <input
+              <Input
                 type={"file"}
                 id={"flies"}
                 name={"flies"}
@@ -128,12 +127,12 @@ function AdPost() {
                 onChange={(e) => setPhone(e.target.value)}
               />
             </FormControl>
-            <FormControl isRequired>
+            <FormControl isDisabled>
               <FormLabel htmlFor="email">Email</FormLabel>
               <Input
                 id="email"
                 placeholder="m*****@gmail.com"
-                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
             </FormControl>
             <FormControl isRequired>
