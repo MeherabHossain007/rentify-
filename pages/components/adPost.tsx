@@ -228,11 +228,11 @@ function AdPost({email}) {
             />
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="green" mr={3} onClick={onClose}>
+            <Button mr={3} onClick={onClose} variant="ghost"> 
               Close
             </Button>
-            <Button
-              variant="ghost"
+            <Button 
+              colorScheme="green"
               onClick={(e) => {
                 e.preventDefault();
                 onClose();
