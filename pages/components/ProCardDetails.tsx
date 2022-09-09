@@ -93,23 +93,23 @@ export default function ProRentDetails() {
   const getBook = async () => {
     let data = await api2.get("/").then(({ data }) => data);
     setBookinfo(data);
-    bookinfo.map((bookinfo)=>
-    bookinfo.booknumber === post_id ? (
-      setBookName(bookinfo.name),
-      setBookNumber(bookinfo.phonenumber),
-      setId(bookinfo.booknumber)
-    ): ""
+    bookinfo.map((bookinfo) =>
+      bookinfo.booknumber === post_id
+        ? (setBookName(bookinfo.name),
+          setBookNumber(bookinfo.phonenumber),
+          setId(bookinfo.booknumber))
+        : ""
     );
   };
   const handleBook = async (post_id: any, name: string, number: string) => {
-        let res = await api2
-          .post("/", {
-            booknumber: post_id,
-            name: name,
-            phonenumber: number,
-          })
-          .catch((err) => console.log(err));
-        console.log(res);
+    let res = await api2
+      .post("/", {
+        booknumber: post_id,
+        name: name,
+        phonenumber: number,
+      })
+      .catch((err) => console.log(err));
+    console.log(res);
   };
   const getPosts = async () => {
     let data = await api.get("/").then(({ data }) => data);
