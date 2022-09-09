@@ -62,7 +62,7 @@ export default function ProRentCard({
   const PostDelete = async (post_id: any) => {
     let data = await api.delete(`/${post_id}`);
   };
-  
+
   const bookInfo = async () => {
     console.log(Uname);
   };
@@ -172,7 +172,7 @@ export default function ProRentCard({
         </Center>
         <Center>
           <Stack direction={"row"} flex={1}>
-            <PosUpdate email={email} id={id}/>
+            <PosUpdate email={email} id={id} />
             <Button
               w={"100%"}
               fontSize={"sm"}
