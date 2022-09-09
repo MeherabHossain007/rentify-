@@ -69,7 +69,8 @@ function AdPost({email}) {
         location: location,
         address: address,
         type: type,
-        approval_status: status,
+        status: status,
+        approval_status: "False",
       })
       .catch((err) => console.log(err));
     console.log(res);
