@@ -25,8 +25,8 @@ const createUser = async (req, res) => {
     const newUser = new User({
       id: uuidv4(),
       name: req.body.name,
-      booknumber: Number(req.body.booknumber),
-      phonenumber: Number(req.body.phonenumber),
+      booknumber: req.body.booknumber,
+      phonenumber: req.body.phonenumber,
     });
     await newUser.save();
     res.status(201).json(newUser);

@@ -11,11 +11,11 @@ const userSchema = mongoose.Schema({
   },
 
   booknumber: {
-    type: Number,
+    type: String,
     reuire: true,
   },
   phonenumber: {
-    type: Number,
+    type: String,
     reuire: true,
   },
   createdOn: {
