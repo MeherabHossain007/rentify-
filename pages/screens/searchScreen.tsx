@@ -22,6 +22,7 @@ import {
   Badge,
   Select,
   Container,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { FC, SetStateAction, useEffect, useState } from "react";
@@ -123,7 +124,7 @@ export default function SearchScreen() {
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "framework",
-    defaultValue: "Apartment",
+    defaultValue: " ",
     onChange: setType,
   });
 
@@ -133,20 +134,19 @@ export default function SearchScreen() {
     console.log(posts);
     return (
       <Flex flex={1} flexDirection={"row"}>
-        <Wrap>
           {posts.map((posts) =>
             posts.approval_status === "True" ? (
               posts.location === location ? (
                 posts.type === type ? (
                   Number(posts.price) <= Number(price) ? (
-                    <WrapItem>
+                    <SimpleGrid columns={2}>
                       <RentCard
                         amount={posts.price}
                         location={posts.location}
                         type={posts.type}
                         title={posts.name}
-                        bed={posts.beds}
-                        bath={posts.baths}
+                        bed={posts.bed}
+                        bath={posts.bath}
                         area={posts.area}
                         phone={posts.number}
                         image={
@@ -155,12 +155,12 @@ export default function SearchScreen() {
                         id={posts.id}
                         children={undefined}
                       />
-                    </WrapItem>
+                    </SimpleGrid>
                   ) : (
-                    ""
+                    " "
                   )
                 ) : (
-                  ""
+                  " "
                 )
               ) : (
                 " "
@@ -169,7 +169,6 @@ export default function SearchScreen() {
               " "
             )
           )}
-        </Wrap>
       </Flex>
     );
   };

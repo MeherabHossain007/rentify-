@@ -35,6 +35,7 @@ const createUser = async (req, res) => {
       status: req.body.status,
       price: req.body.price,
       type: req.body.type,
+      image: req.body.image,
       description: req.body.description,
       approval_status: req.body.approval_status,
     });
@@ -77,6 +78,9 @@ const updateUser = async (req, res) => {
     }
     if (req.body.type) {
       user.type = req.body.type;
+    }
+    if (req.body.image) {
+      user.image = req.body.type;
     }
     if (req.body.description) {
       user.description = req.body.description;

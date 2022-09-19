@@ -20,6 +20,7 @@ import {
 import { useState } from "react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import router from "next/router";
+import axios from "axios";
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -36,16 +37,31 @@ const NavLink = ({ children }: { children: ReactNode }) => (
   </Link>
 );
 
+const api = axios.create({
+  baseURL: `http://localhost:5000/api/user`,
+});
+
 export default function ProfileNav({ id }) {
   const querystring = require("querystring");
   const [name, setName] = useState("");
   const u_id = querystring.stringify(id).replace(/=$|=(?=&)/g, "");
+  const [users, setUser] = useState([]);
 
   useEffect(() => {
     getProfile();
-  }, []);
+  });
 
-  const getProfile = async () => {};
+  const getProfile = async () => {
+    let data = await api.get("/").then(({ data }) => data);
+    setUser(data);
+    users.map((users) => {
+      if (id == users.email) {
+        setName(users.name);  
+      }
+      else{
+        " "
+      }
+  })}
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (

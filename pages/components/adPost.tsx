@@ -21,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import axios from "axios";
+import { supabase } from "../../utils/supabaseClient";
 
 const api = axios.create({
   baseURL: `http://localhost:5001/api/post`,
@@ -70,13 +71,27 @@ function AdPost({email}) {
         address: address,
         type: type,
         status: status,
+        image: image,
         approval_status: "False",
       })
       .catch((err) => console.log(err));
     console.log(res);
   };
 
-  async function uploadAvatar(event) {}
+  async function uploadAvatar(event) {
+    const file = event.target.files[0]
+    const fileExt = file.name.split('.').pop()
+    const fileName = `${Math.random()}.${fileExt}`
+    const filePath = `${fileName}`
+
+    let { data, error: uploadError } = await supabase.storage
+      .from('avatars')
+      .upload(filePath, file)
+
+    if(data){
+      setImage(String(filePath));
+    }
+  }
 
   return (
     <>

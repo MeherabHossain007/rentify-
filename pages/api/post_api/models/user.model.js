@@ -54,6 +54,10 @@ const userSchema = mongoose.Schema({
     type: String,
     reuire: true,
   },
+  image: {
+    type: String,
+    reuire: true,
+  },
   approval_status: {
     type: String,
     reuire: true,

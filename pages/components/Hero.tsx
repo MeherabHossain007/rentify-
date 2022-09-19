@@ -48,8 +48,6 @@ export default function Hero() {
           </Text>
           <Stack direction={"row"} spacing={4}>
             <Button
-              as={"a"}
-              href={"/signUp"}
               rounded={"full"}
               bg={"blue.400"}
               color={"white"}

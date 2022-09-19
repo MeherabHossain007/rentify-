@@ -47,15 +47,10 @@ export default function RentCard({
     
   };
   return (
-    <div>
     <Center>
       <Stack
-        borderWidth="1px"
-        borderRadius="lg"
-        w={"70%"}
+        w={"100%"}
         height={"100%"}
-        bg={useColorModeValue("white", "gray.900")}
-        boxShadow={"lg"}
         padding={4}
       >
         <Center py={6}>
@@ -70,7 +65,7 @@ export default function RentCard({
             as={"button"}
             onClick={() => {
               router.push({
-                pathname: "/components/ProCardDetails",
+                pathname: "/components/rentDetails",
                 query: id,
               });
             }}
@@ -79,7 +74,7 @@ export default function RentCard({
               <Image
                 objectFit="cover"
                 maxH={"30%"}
-                maxW={"50%"}
+                maxW={"40%"}
                 borderRadius={"lg"}
                 src={image}
               />
@@ -153,6 +148,5 @@ export default function RentCard({
         </Center>
       </Stack>
     </Center>
-    </div>
   );
 }
