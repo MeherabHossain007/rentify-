@@ -177,7 +177,7 @@ export default function SearchScreen() {
         bgImage="url('https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2F2201_w039_n003_98b_p1_98.jpg?alt=media&token=f3176961-d18f-4c97-ad45-2e48db68645d')"
         bgSize={"867px"}
         maxW={"full"}
-        h={"45vh"}
+        h={"60vh"}
         justifyContent={"center"}
         display={"flex"}
         flexDirection="row"
