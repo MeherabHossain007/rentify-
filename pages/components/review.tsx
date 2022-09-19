@@ -9,13 +9,16 @@ import {
   Heading,
   Text,
   Container,
-  Flex,
   Box,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import { Textarea } from "@chakra-ui/react";
 import axios from "axios";
-import { supabase } from "../../utils/supabaseClient";
+
+const api2 = axios.create({
+  baseURL: `http://localhost:5004/api/review`,
+});
+
 
 export default function ReviewSubmit({ post_id }) {
   const [name, setName] = useState("");
@@ -62,14 +65,17 @@ export default function ReviewSubmit({ post_id }) {
             e.preventDefault();
             setError(false);
             setState("submitting");
-            const { data, error } = await supabase
-              .from("reviewlist")
-              .insert([
-                { post_id: post_id, name: name , title: title , review: value },
-              ]);
-            if(data){
-                setState('success');
-            }
+            let res = await api2
+            .post("/", {
+              id: post_id,
+              name: name,
+              title: title,
+              review: value,
+            })
+            .catch((err) => console.log(err));
+            if(res){
+              setState('success');
+          }
           }}
         >
           <FormControl>

@@ -23,7 +23,7 @@ const getOneUser = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const newUser = new User({
-      id: uuidv4(),
+      id: req.body.id,
       name: req.body.name,
     
       title: req.body.title,
