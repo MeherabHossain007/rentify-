@@ -134,31 +134,26 @@ export default function SearchScreen() {
     console.log(posts);
     return (
       <Flex flex={1} flexDirection={"row"}>
-          {posts.map((posts) =>
-            posts.approval_status === "True" ? (
-              posts.location === location ? (
-                posts.type === type ? (
-                  Number(posts.price) <= Number(price) ? (
-                    <SimpleGrid columns={2}>
-                      <RentCard
-                        amount={posts.price}
-                        location={posts.location}
-                        type={posts.type}
-                        title={posts.name}
-                        bed={posts.bed}
-                        bath={posts.bath}
-                        area={posts.area}
-                        phone={posts.number}
-                        image={
-                          "https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/colonial-style-house-night-scene.jpg?alt=media&token=6bfee092-54bc-4c68-904b-5d7af87a78c0"
-                        }
-                        id={posts.id}
-                        children={undefined}
-                      />
-                    </SimpleGrid>
-                  ) : (
-                    " "
-                  )
+        {posts.map((posts) =>
+          posts.approval_status === "True" ? (
+            posts.location === location ? (
+              posts.type === type ? (
+                Number(posts.price) <= Number(price) ? (
+                  <SimpleGrid columns={2}>
+                    <RentCard
+                      amount={posts.price}
+                      location={posts.location}
+                      type={posts.type}
+                      title={posts.name}
+                      bed={posts.bed}
+                      bath={posts.bath}
+                      area={posts.area}
+                      phone={posts.number}
+                      image={`https://fahabcdzxgcwuzrpykgn.supabase.co/storage/v1/object/public/avatars/${posts.image}`}
+                      id={posts.id}
+                      children={undefined}
+                    />
+                  </SimpleGrid>
                 ) : (
                   " "
                 )
@@ -168,7 +163,10 @@ export default function SearchScreen() {
             ) : (
               " "
             )
-          )}
+          ) : (
+            " "
+          )
+        )}
       </Flex>
     );
   };
