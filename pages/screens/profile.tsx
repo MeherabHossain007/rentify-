@@ -47,22 +47,6 @@ function Profile() {
     console.log(email);
   };
 
-  const Card = ({ children }: any) => {
-    return (
-      <Box
-        bgColor={useColorModeValue("white", "#171923")}
-        borderRadius={10}
-        boxShadow={"lg"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        h={100}
-        w={"100%"}
-        p={4}
-      >
-        {children}
-      </Box>
-    );
-  };
 
   return (
     <>
@@ -84,22 +68,22 @@ function Profile() {
           justifyContent={"center"}
           alignItems="center"
           flexGrow={1}
-          p={4}
-          my={5}
+          p={8}
+          mx={12}
         >
-          <Flex alignItems={"center"}>
+          <Flex alignItems={"center" } mb={3}>
             <Box
               bgColor={useColorModeValue("white", "#171923")}
               borderRadius={10}
-              boxShadow={"lg"}
+              boxShadow={"xl"}
               justifyContent={"center"}
               display={"flex"}
               flexDirection="row"
               alignItems="center"
               flexGrow={1}
               h={100}
+              w={"20"}
               p={4}
-              my={5}
             >
               <HStack p={10} justifyContent={"space-between"} flex={1}>
                 <Heading
@@ -129,6 +113,9 @@ function Profile() {
             display={"flex"}
             flexDirection="row"
             justifyContent={"center"}
+            bgColor={useColorModeValue("white", "#171923")}
+            borderRadius={10}
+            boxShadow={"lg"}
             p={3}
           >
             <FormControl>
