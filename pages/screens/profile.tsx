@@ -55,7 +55,7 @@ function Profile() {
         bgImage="url('https://firebasestorage.googleapis.com/v0/b/rentify-4f59b.appspot.com/o/rentify%20reloaded%2F810-2%20%5BConverted%5D.png?alt=media&token=fecd0b33-c04d-4304-b9c7-f1643408f57c')"
         bgSize={"370px"}
         maxW={"full"}
-        h={"40vh"}
+        h={"55vh"}
         display={"flex"}
         flexDirection="row"
         alignItems="center"
